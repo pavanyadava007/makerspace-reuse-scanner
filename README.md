@@ -14,9 +14,9 @@ Pi 5 / Jetson / webcam --OpenCV--> YOLO11n (ONNX Runtime) --WS--> FastAPI --> Po
 ```
 
 ## Live demo / Live-Demo
-- **Hugging Face Space** (try the detector on belt frames or your own photo, session inventory, cited Ask): https://huggingface.co/spaces/pavanyadava07/makerspace-reuse-scanner
+- **Hugging Face Space, runs in your browser**: https://huggingface.co/spaces/pavanyadava07/makerspace-reuse-scanner · the same ONNX detector via onnxruntime-web on belt frames, your own photo or the webcam; session inventory with bins; the corpus searched with the API's lexical scoring (passages shown verbatim with citations, no text generation in the browser). Its About tab lists exactly what differs from the full stack.
 - **Detector on the Hub** (ONNX + checkpoint + eval/bench reports + model card): https://huggingface.co/pavanyadava07/makerspace-yolo11n
-- **Source**: https://github.com/pavanyadava007/makerspace-reuse-scanner · the Space's About tab lists exactly what differs from the full stack (session inventory, e5-small embeddings, Qwen2.5-7B on ZeroGPU instead of llama3.1:8b in Ollama). Publish with `python scripts/publish_hf.py --model --space`.
+- **Source**: https://github.com/pavanyadava007/makerspace-reuse-scanner · publish with `python scripts/publish_hf.py --model --static`. A Gradio version with Qwen2.5-7B-Instruct on ZeroGPU writing the cited answers is ready in `deploy/hf_space/` (`--space`; Gradio Spaces need a Hugging Face PRO plan).
 
 ## Quick start / Schnellstart
 ```bash
@@ -74,7 +74,7 @@ The Live tab shows the frame with boxes as soon as the first `frame` message arr
 | `web/` | Frontend | React 18 + Vite + TypeScript, no UI framework: live overlay + device/model panel, inventory with stat tiles, bar lists, filters, sorting, add/delete, item detail with clickable detection history, and an Ask page for cited knowledge-base answers |
 | `rag/` | Knowledge | DE/EN corpus, chunk-by-heading ingest, hybrid retrieval (pgvector + Postgres full-text), cited answers, material↔process graph expansion; `rag/eval/` = 25 hand-verified questions + runner → `rag/eval/reports/` |
 | `scripts/` | Ops & demo | `deploy.sh` (one-command deployment), `smoke.sh` (end-to-end check), `publish_hf.py` (model repo + Space), `simulate_edge.py`, belt/slideshow demo-video renderers |
-| `deploy/` | Hugging Face | `hf_space/` Gradio app (same ONNX, same corpus, ZeroGPU Qwen2.5-7B for answers) and the model card |
+| `deploy/` | Hugging Face | `hf_static/` in-browser demo (onnxruntime-web, free static Space), `hf_space/` Gradio app (ZeroGPU Qwen2.5-7B answers, PRO plan), model card |
 | `docs/` | PM & decisions | Arbeitspakete, Meilensteine, 4 Statusberichte (DE), EN mirrors, 4 ADRs, demo script, `screenshots/` |
 
 ## API

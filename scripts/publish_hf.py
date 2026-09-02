@@ -1,6 +1,7 @@
 """Publish to Hugging Face: the detector as a model repo and the Gradio demo as a Space (ZeroGPU).
     python scripts/publish_hf.py --model          # upload models/*.onnx, best.pt, classes, eval/bench reports, sources + model card
-    python scripts/publish_hf.py --space          # assemble deploy/hf_space + corpus + assets in a staging dir and upload
+    python scripts/publish_hf.py --static         # FREE static Space: deploy/hf_static (detector in the browser via onnxruntime-web)
+    python scripts/publish_hf.py --space          # Gradio Space (needs a PRO plan): deploy/hf_space + corpus + assets, ZeroGPU answers
 Needs a write token (`hf auth login`). Model card lives in deploy/hf_model_card.md."""
 from __future__ import annotations
 
@@ -29,16 +30,25 @@ def stage_model(d: Path):
         else: print("  missing (skipped):", src)
 
 
-def stage_space(d: Path):
-    for f in (ROOT / "deploy/hf_space").iterdir(): shutil.copy(f, d / f.name)
-    shutil.copy(ROOT / "edge/detector.py", d / "detector.py")
-    shutil.copy(ROOT / "models/classes.yaml", d / "classes.yaml")
-    shutil.copy(ROOT / "training/reports/eval_2026-09-02.json", d / "eval_2026-09-02.json")
+def transcode_h264(src: Path, dst: Path):
+    """Browser-playable H.264/yuv420p copy via the ffmpeg bundled with imageio-ffmpeg; falls back to a plain copy."""
+    try:
+        import subprocess
+
+        import imageio_ffmpeg
+        cmd = [imageio_ffmpeg.get_ffmpeg_exe(), "-y", "-loglevel", "error", "-i", str(src), "-c:v", "libx264", "-pix_fmt", "yuv420p",
+               "-crf", "23", "-movflags", "+faststart", "-an", str(dst)]
+        subprocess.run(cmd, check=True)
+    except Exception as e:  # noqa: BLE001
+        print("  ffmpeg transcode failed, copying as-is:", e); shutil.copy(src, dst)
+
+
+def stage_assets(d: Path):
     (d / "corpus").mkdir(); [shutil.copy(f, d / "corpus" / f.name) for f in (ROOT / "rag/corpus").glob("*.md")]
     (d / "screenshots").mkdir(); [shutil.copy(f, d / "screenshots" / f.name) for f in (ROOT / "docs/screenshots").glob("*.png")]
     belt = ROOT / "models/demo_belt.mp4"
     if belt.exists():
-        shutil.copy(belt, d / "demo_belt.mp4")
+        transcode_h264(belt, d / "demo_belt.mp4")   # OpenCV writes MPEG-4 Part 2, which browsers cannot play
         import cv2
         (d / "examples").mkdir(); cap = cv2.VideoCapture(str(belt))
         for k, i in enumerate([40, 130, 220, 310, 400, 490]):
@@ -47,14 +57,34 @@ def stage_space(d: Path):
     else: print("  models/demo_belt.mp4 missing: run scripts/make_belt_video.py first")
 
 
+def stage_space(d: Path):
+    for f in (ROOT / "deploy/hf_space").iterdir(): shutil.copy(f, d / f.name)
+    shutil.copy(ROOT / "edge/detector.py", d / "detector.py")
+    shutil.copy(ROOT / "models/classes.yaml", d / "classes.yaml")
+    shutil.copy(ROOT / "training/reports/eval_2026-09-02.json", d / "eval_2026-09-02.json")
+    stage_assets(d)
+
+
+def stage_static(d: Path):
+    for f in (ROOT / "deploy/hf_static").iterdir(): shutil.copy(f, d / f.name)
+    shutil.copy(ROOT / "models/yolo11n_makerspace.onnx", d / "yolo11n_makerspace.onnx")   # fallback copy; primary load is the model repo
+    stage_assets(d)
+
+
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument("--model", action="store_true"); ap.add_argument("--space", action="store_true")
+    ap.add_argument("--static", action="store_true")
     ap.add_argument("--hardware", default="zero-a10g"); a = ap.parse_args(); api = HfApi()
     if a.model:
         with tempfile.TemporaryDirectory() as t:
             d = Path(t); stage_model(d); api.create_repo(MODEL_ID, repo_type="model", exist_ok=True)
             r = api.upload_folder(folder_path=t, repo_id=MODEL_ID, repo_type="model", commit_message="publish_hf.py: model files + card")
             print(r.commit_url)
+    if a.static:
+        with tempfile.TemporaryDirectory() as t:
+            d = Path(t); stage_static(d); api.create_repo(SPACE_ID, repo_type="space", space_sdk="static", exist_ok=True)
+            r = api.upload_folder(folder_path=t, repo_id=SPACE_ID, repo_type="space", commit_message="publish_hf.py: static demo")
+            print(r.commit_url); print(f"https://huggingface.co/spaces/{SPACE_ID}")
     if a.space:
         with tempfile.TemporaryDirectory() as t:
             d = Path(t); stage_space(d); api.create_repo(SPACE_ID, repo_type="space", space_sdk="gradio", exist_ok=True)

@@ -8,7 +8,7 @@ sdk_version: 6.26.0
 app_file: app.py
 pinned: false
 license: mit
-short_description: Edge YOLO11n reuse inventory + cited DE/EN disposal assistant
+short_description: YOLO11n reuse inventory + cited DE/EN disposal assistant
 models:
   - pavanyadava07/makerspace-yolo11n
   - Qwen/Qwen2.5-7B-Instruct
