@@ -1,0 +1,18 @@
+# 12 makerspace classes (self-photographed) + 3 material classes bridged from TACO/TrashNet.
+nc: 15
+names:
+  0: screw
+  1: nut_bolt
+  2: pcb
+  3: filament_spool
+  4: wood_offcut
+  5: cable
+  6: 3d_print_part
+  7: acrylic_sheet
+  8: metal_profile
+  9: motor
+  10: battery
+  11: tool
+  12: plastic_container   # TACO/TrashNet bridge
+  13: cardboard           # TrashNet bridge
+  14: glass               # TrashNet bridge

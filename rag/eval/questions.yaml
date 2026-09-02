@@ -1,0 +1,34 @@
+# Hand-written RAG evaluation set (ADR-0004: "20 hand-verified questions, source hit-rate + correctness").
+# Every expectation was checked by hand against rag/corpus/*.md on 2026-09-02. Fields:
+#   q / lang            question and answer language (retrieval prefers chunks in that language)
+#   expect_doc          the corpus file that must appear among the cited sources
+#   expect_section      (optional) the heading that must appear among the cited sources
+#   must_contain        (optional) at least ONE of these regexes must appear in the answer (case-insensitive)
+#   kind                corpus | refuse | inventory
+#     refuse    → the corpus has no answer; the model must decline instead of inventing a rule
+#     inventory → the answer must cite `live-inventory` and quote the real count from the database
+- {id: 1,  kind: corpus, lang: de, q: "Wohin mit PLA-Fehldrucken?", expect_doc: kunststoffe_3d_druck.de.md, expect_section: PLA, must_contain: ["Restmüll", "Filament-Recycler"]}
+- {id: 2,  kind: corpus, lang: de, q: "Kann ich PETG-Drucke in den Gelben Sack werfen?", expect_doc: kunststoffe_3d_druck.de.md, must_contain: ["Verpackung"]}
+- {id: 3,  kind: corpus, lang: de, q: "Wohin mit einem defekten Lithium-Akku?", expect_doc: elektronik_batterien.de.md, expect_section: "Batterien und Akkus (BattG)", must_contain: ["Sammelbox", "abkleben", "Sand"]}
+- {id: 4,  kind: corpus, lang: de, q: "Darf ich Sperrholzreste im Kamin verbrennen?", expect_doc: metalle_und_altholz.de.md, expect_section: "Altholz-Kategorien (AltholzV)", must_contain: ["A II", "Wertstoffhof", "nicht in den Kamin"]}
+- {id: 5,  kind: corpus, lang: de, q: "Welche Altholzkategorie hat MDF?", expect_doc: metalle_und_altholz.de.md, expect_section: "Altholz-Kategorien (AltholzV)", must_contain: ["A II"]}
+- {id: 6,  kind: corpus, lang: de, q: "Wohin mit Acrylglas-Resten vom Laser?", expect_doc: kunststoffe_3d_druck.de.md, expect_section: "Acrylglas (PMMA)", must_contain: ["Wertstoffhof", "Restmüll", "Schilder", "Halterungen"]}
+- {id: 7,  kind: corpus, lang: de, q: "Warum darf PVC nicht gelasert werden?", expect_doc: kunststoffe_3d_druck.de.md, expect_section: "Acrylglas (PMMA)", must_contain: ["Chlor"]}
+- {id: 8,  kind: corpus, lang: de, q: "Gehört Flachglas in den Glascontainer?", expect_doc: abfalltrennung_grundregeln.de.md, expect_section: Glascontainer, must_contain: ["Wertstoffhof", "Restmüll", "nicht"]}
+- {id: 9,  kind: corpus, lang: de, q: "Wie kann ich alte Leiterplatten wiederverwenden?", expect_doc: elektronik_batterien.de.md, expect_section: "Wiederverwendung von Elektronik", must_contain: ["auslöten", "Heißluft", "Bauteile"]}
+- {id: 10, kind: corpus, lang: de, q: "Wohin mit defekten Elektrowerkzeugen?", expect_doc: elektronik_batterien.de.md, expect_section: Werkzeuge, must_contain: ["Elektroschrott"]}
+- {id: 11, kind: corpus, lang: de, q: "Wie sollte ich gebrauchte Schrauben sortieren?", expect_doc: metalle_und_altholz.de.md, expect_section: "Wiederverwendung von Metallteilen", must_contain: ["Gewinde", "M3", "Länge"]}
+- {id: 12, kind: corpus, lang: de, q: "Wohin mit leeren Filamentspulen aus Pappe?", expect_doc: kunststoffe_3d_druck.de.md, expect_section: Filamentspulen, must_contain: ["Papiertonne"]}
+- {id: 13, kind: corpus, lang: de, q: "Was gehört in die Papiertonne?", expect_doc: abfalltrennung_grundregeln.de.md, expect_section: Papiertonne, must_contain: ["Karton", "Papier"]}
+- {id: 14, kind: corpus, lang: de, q: "Worauf muss ich beim Drucken von ABS achten?", expect_doc: kunststoffe_3d_druck.de.md, expect_section: "PETG und ABS", must_contain: ["Styrol", "Absaugung"]}
+- {id: 15, kind: corpus, lang: de, q: "Kann PLA in die Biotonne?", expect_doc: kunststoffe_3d_druck.de.md, expect_section: PLA, must_contain: ["industriell", "nicht"]}
+- {id: 16, kind: corpus, lang: en, q: "How do I reuse plywood offcuts?", expect_doc: reuse_guide.en.md, must_contain: ["laser", "jig", "A II", "recycling"]}
+- {id: 17, kind: corpus, lang: en, q: "Where do damaged lithium cells go?", expect_doc: reuse_guide.en.md, must_contain: ["tape", "battery collection", "hazardous"]}
+- {id: 18, kind: corpus, lang: en, q: "What is the waste hierarchy?", expect_doc: reuse_guide.en.md, expect_section: "Reuse-first hierarchy", must_contain: ["prevent", "reuse"]}
+- {id: 19, kind: corpus, lang: en, q: "When is a part damaged rather than just worn?", expect_doc: reuse_guide.en.md, expect_section: "Condition assessment", must_contain: ["crack", "corrosion", "bulging"]}
+- {id: 20, kind: corpus, lang: en, q: "Is PLA home-compostable?", expect_doc: reuse_guide.en.md, must_contain: ["not", "residual"]}
+- {id: 21, kind: refuse, lang: de, q: "Wie hoch ist die Mehrwertsteuer auf Schrottverkäufe in Deutschland?"}
+- {id: 22, kind: refuse, lang: de, q: "Wie entsorge ich radioaktive Abfälle aus dem Labor?"}
+- {id: 23, kind: refuse, lang: en, q: "What is the melting point of titanium?"}
+- {id: 24, kind: inventory, lang: de, q: "Wie viele Schrauben haben wir im Bestand?", label: screw}
+- {id: 25, kind: inventory, lang: en, q: "How many PCBs are in stock right now?", label: pcb}

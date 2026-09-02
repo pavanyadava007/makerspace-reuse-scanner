@@ -1,0 +1,7 @@
+# Optional material stage (CLIP zero-shot). Installed only with `docker build --build-arg WITH_VLM=1`
+# or `pip install -r api/requirements-vlm.txt` for local runs. CPU torch keeps the image ~1 GB smaller
+# than the CUDA wheels; use the CUDA wheels + transformers for the Qwen2.5-VL path on a GPU host.
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch>=2.3
+torchvision>=0.18
+open_clip_torch>=2.24

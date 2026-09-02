@@ -1,0 +1,13 @@
+{
+  "device": "x86_64 + NVIDIA L4",
+  "providers": [
+    "CPUExecutionProvider"
+  ],
+  "model": "yolo11n_makerspace.onnx",
+  "imgsz": 640,
+  "n": 120,
+  "inference_ms_median": 96.09,
+  "e2e_ms_median": 110.7,
+  "fps_e2e": 9.0,
+  "measured_at": "2026-09-02T17:45:25"
+}

@@ -1,0 +1,6 @@
+path: ./dataset
+train: images/train
+val: images/val
+test: images/test
+nc: 15
+names: [screw, nut_bolt, pcb, filament_spool, wood_offcut, cable, 3d_print_part, acrylic_sheet, metal_profile, motor, battery, tool, plastic_container, cardboard, glass]

@@ -1,0 +1,12 @@
+<View>
+  <Image name="image" value="$image" zoom="true"/>
+  <RectangleLabels name="label" toName="image">
+    <Label value="screw"/><Label value="nut_bolt"/><Label value="pcb"/><Label value="filament_spool"/>
+    <Label value="wood_offcut"/><Label value="cable"/><Label value="3d_print_part"/><Label value="acrylic_sheet"/>
+    <Label value="metal_profile"/><Label value="motor"/><Label value="battery"/><Label value="tool"/>
+    <Label value="plastic_container"/><Label value="cardboard"/><Label value="glass"/>
+  </RectangleLabels>
+  <Choices name="condition" toName="image" choice="single" showInline="true">
+    <Choice value="good"/><Choice value="worn"/><Choice value="broken"/>
+  </Choices>
+</View>

@@ -1,0 +1,15 @@
+**/__pycache__
+**/.pytest_cache
+**/.ruff_cache
+.venv
+web/node_modules
+web/dist
+training/dataset/images
+training/dataset/labels
+training/runs
+models
+data
+edge/results
+api/images
+.env
+.git

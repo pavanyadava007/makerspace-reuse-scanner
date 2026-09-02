@@ -1,0 +1,290 @@
+{
+  "date": "2026-09-02",
+  "api": "http://localhost:8080",
+  "model": "llama3.1:8b",
+  "k": 4,
+  "summary": {
+    "doc_hit": {
+      "n": 20,
+      "hits": 20,
+      "rate": 1.0
+    },
+    "section_hit": {
+      "n": 16,
+      "hits": 14,
+      "rate": 0.875
+    },
+    "answer_ok_corpus": {
+      "n": 20,
+      "hits": 17,
+      "rate": 0.85
+    },
+    "refusal_ok": {
+      "n": 3,
+      "hits": 3,
+      "rate": 1.0
+    },
+    "inventory_ok": {
+      "n": 2,
+      "hits": 2,
+      "rate": 1.0
+    },
+    "latency_s_median": 2.28,
+    "latency_s_max": 55.56
+  },
+  "rows": [
+    {
+      "id": 1,
+      "kind": "corpus",
+      "lang": "de",
+      "q": "Wohin mit PLA-Fehldrucken?",
+      "doc_hit": true,
+      "section_hit": true,
+      "answer_ok": true
+    },
+    {
+      "id": 2,
+      "kind": "corpus",
+      "lang": "de",
+      "q": "Kann ich PETG-Drucke in den Gelben Sack werfen?",
+      "doc_hit": true,
+      "section_hit": null,
+      "answer_ok": true
+    },
+    {
+      "id": 3,
+      "kind": "corpus",
+      "lang": "de",
+      "q": "Wohin mit einem defekten Lithium-Akku?",
+      "doc_hit": true,
+      "section_hit": true,
+      "answer_ok": true
+    },
+    {
+      "id": 4,
+      "kind": "corpus",
+      "lang": "de",
+      "q": "Darf ich Sperrholzreste im Kamin verbrennen?",
+      "doc_hit": true,
+      "section_hit": false,
+      "answer_ok": false
+    },
+    {
+      "id": 5,
+      "kind": "corpus",
+      "lang": "de",
+      "q": "Welche Altholzkategorie hat MDF?",
+      "doc_hit": true,
+      "section_hit": true,
+      "answer_ok": true
+    },
+    {
+      "id": 6,
+      "kind": "corpus",
+      "lang": "de",
+      "q": "Wohin mit Acrylglas-Resten vom Laser?",
+      "doc_hit": true,
+      "section_hit": true,
+      "answer_ok": true
+    },
+    {
+      "id": 7,
+      "kind": "corpus",
+      "lang": "de",
+      "q": "Warum darf PVC nicht gelasert werden?",
+      "doc_hit": true,
+      "section_hit": false,
+      "answer_ok": false
+    },
+    {
+      "id": 8,
+      "kind": "corpus",
+      "lang": "de",
+      "q": "Gehört Flachglas in den Glascontainer?",
+      "doc_hit": true,
+      "section_hit": true,
+      "answer_ok": true
+    },
+    {
+      "id": 9,
+      "kind": "corpus",
+      "lang": "de",
+      "q": "Wie kann ich alte Leiterplatten wiederverwenden?",
+      "doc_hit": true,
+      "section_hit": true,
+      "answer_ok": true
+    },
+    {
+      "id": 10,
+      "kind": "corpus",
+      "lang": "de",
+      "q": "Wohin mit defekten Elektrowerkzeugen?",
+      "doc_hit": true,
+      "section_hit": true,
+      "answer_ok": true
+    },
+    {
+      "id": 11,
+      "kind": "corpus",
+      "lang": "de",
+      "q": "Wie sollte ich gebrauchte Schrauben sortieren?",
+      "doc_hit": true,
+      "section_hit": true,
+      "answer_ok": true
+    },
+    {
+      "id": 12,
+      "kind": "corpus",
+      "lang": "de",
+      "q": "Wohin mit leeren Filamentspulen aus Pappe?",
+      "doc_hit": true,
+      "section_hit": true,
+      "answer_ok": true
+    },
+    {
+      "id": 13,
+      "kind": "corpus",
+      "lang": "de",
+      "q": "Was gehört in die Papiertonne?",
+      "doc_hit": true,
+      "section_hit": true,
+      "answer_ok": true
+    },
+    {
+      "id": 14,
+      "kind": "corpus",
+      "lang": "de",
+      "q": "Worauf muss ich beim Drucken von ABS achten?",
+      "doc_hit": true,
+      "section_hit": true,
+      "answer_ok": true
+    },
+    {
+      "id": 15,
+      "kind": "corpus",
+      "lang": "de",
+      "q": "Kann PLA in die Biotonne?",
+      "doc_hit": true,
+      "section_hit": true,
+      "answer_ok": true
+    },
+    {
+      "id": 16,
+      "kind": "corpus",
+      "lang": "en",
+      "q": "How do I reuse plywood offcuts?",
+      "doc_hit": true,
+      "section_hit": null,
+      "answer_ok": true
+    },
+    {
+      "id": 17,
+      "kind": "corpus",
+      "lang": "en",
+      "q": "Where do damaged lithium cells go?",
+      "doc_hit": true,
+      "section_hit": null,
+      "answer_ok": false
+    },
+    {
+      "id": 18,
+      "kind": "corpus",
+      "lang": "en",
+      "q": "What is the waste hierarchy?",
+      "doc_hit": true,
+      "section_hit": true,
+      "answer_ok": true
+    },
+    {
+      "id": 19,
+      "kind": "corpus",
+      "lang": "en",
+      "q": "When is a part damaged rather than just worn?",
+      "doc_hit": true,
+      "section_hit": true,
+      "answer_ok": true
+    },
+    {
+      "id": 20,
+      "kind": "corpus",
+      "lang": "en",
+      "q": "Is PLA home-compostable?",
+      "doc_hit": true,
+      "section_hit": null,
+      "answer_ok": true
+    },
+    {
+      "id": 21,
+      "kind": "refuse",
+      "lang": "de",
+      "q": "Wie hoch ist die Mehrwertsteuer auf Schrottverkäufe in Deutschland?",
+      "doc_hit": null,
+      "section_hit": null,
+      "answer_ok": true
+    },
+    {
+      "id": 22,
+      "kind": "refuse",
+      "lang": "de",
+      "q": "Wie entsorge ich radioaktive Abfälle aus dem Labor?",
+      "doc_hit": null,
+      "section_hit": null,
+      "answer_ok": true
+    },
+    {
+      "id": 23,
+      "kind": "refuse",
+      "lang": "en",
+      "q": "What is the melting point of titanium?",
+      "doc_hit": null,
+      "section_hit": null,
+      "answer_ok": true
+    },
+    {
+      "id": 24,
+      "kind": "inventory",
+      "lang": "de",
+      "q": "Wie viele Schrauben haben wir im Bestand?",
+      "doc_hit": true,
+      "section_hit": null,
+      "answer_ok": true
+    },
+    {
+      "id": 25,
+      "kind": "inventory",
+      "lang": "en",
+      "q": "How many PCBs are in stock right now?",
+      "doc_hit": true,
+      "section_hit": null,
+      "answer_ok": true
+    }
+  ],
+  "answers": {
+    "1": "Fehldrucke aus PLA gehören in den Restmüll [2].",
+    "2": "Nein, PETG-Drucke sind keine Verpackung und gehören nicht in den Gelben Sack. Sie sind kein Verpackungsmüll, sondern können sortenrein gesammelt werden, um über Filament-Recycler recycelt zu werden [2].",
+    "3": "Ein defekter Lithium-Akku ist ein Brandrisiko. Er sollte in einen Sammelbox am Handel oder Wertstoffhof abgegeben werden.",
+    "4": "Nein, das ist nicht empfehlenswert. Sperrholzreste können bei Verbrennung giftige Dämpfe freisetzen. Es ist besser, sie für Laserschnitte oder als Jigs zu verwenden, wie im [1] beschrieben.",
+    "5": "A II",
+    "6": "Nach [1] und [3] gehören Acrylglas-Reste vom Laser zum Wertstoffhof.",
+    "7": "Keine Frage im Kontext.",
+    "8": "Nein, laut [1] gehört Flachglas nicht in den Glascontainer, sondern zum Wertstoffhof bzw. Restmüll.",
+    "9": "Die alte Leiterplatte kann wie folgt wiederverwendet werden:\n\n1. Bauteile (Stecker, Elkos, Spulen) mit Heißluft auslöten.\n2. Sortiert lagern.\n3. Motoren aus Druckern oder Laufwerken können für Prototypen geeignet sein, bevor man sie verwendet, solltest du die Strom/Spannung messen.\n4. Die Leiterplatte selbst ist ein Elektroaltgerät und darf nicht in den Restmüll. Sie kann kostenlos am Wertstoffhof oder bei einem Händler mit Rücknahmepflicht abgegeben werden.\n\nQuelle: [1]",
+    "10": "Zum Elektroschrott.",
+    "11": "Gebrauchte Schrauben sollten nach Gewinde (z.B. M3, M4, M5) und Länge sortiert werden. Verrostete Teile sollten nur für nicht tragende Zwecke verwendet werden.",
+    "12": "In die Papiertonne.",
+    "13": "Karton, Papier, Papierspulen. Vorher zusammenfalten. Beschichtete oder verschmutzte Kartons (Öl, Klebstoff) in den Restmüll. [1]",
+    "14": "Beim Drucken von ABS muss man beim Drucken und Schmelzen auf Absaugung achten, da ABS Styrol freisetzt. Reste sollten in den Restmüll gegeben werden. [1]",
+    "15": "Nein, PLA ist nicht in die Biotonne zu geben, da es sich nicht im Hauskompost abbaut. [1]",
+    "16": "According to the reuse guide, plywood offcuts are classified as waste-wood category A II. They should be taken to the recycling centre, not burned indoors.",
+    "17": "According to the reuse guide, damaged lithium cells should be routed to disposal, never to reuse [2].",
+    "18": "The waste hierarchy is: prevent → reuse → recycle → recover → dispose.",
+    "19": "A part is damaged rather than just worn when it has cracks, corrosion on load paths, or bulging cells [1].",
+    "20": "No, according to the reuse guide, PLA is not home-compostable.",
+    "21": "Ich habe keine Informationen darüber, wie hoch die Mehrwertsteuer auf Schrottverkäufe in Deutschland ist. Der Kontext enthält keine Hinweise auf Steuern.",
+    "22": "Es tut mir leid, aber ich kann keine Informationen zu radioaktiven Abfällen oder deren Entsorgung geben.",
+    "23": "I'm not aware of any information about the melting point of titanium in the provided context. The context appears to be about reuse and disposal guidelines for a makerspace, and does not mention titanium.",
+    "24": "Wir haben 5 Schrauben im Bestand.",
+    "25": "According to the live inventory [4], there are 6 PCBs available, with all 6 being fiberglass PCBs, which should be disposed of as e-waste (WEEE/ElektroG) [1]."
+  },
+  "tag": "vector-only"
+}

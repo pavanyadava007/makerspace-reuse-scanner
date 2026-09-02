@@ -1,0 +1,86 @@
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-mrs}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-mrs}
+      POSTGRES_DB: ${POSTGRES_DB:-mrs}
+    volumes: [pgdata:/var/lib/postgresql/data]
+    ports: ["5432:5432"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U mrs"]
+      interval: 5s
+      retries: 10
+
+  ollama:
+    image: ollama/ollama:latest
+    environment: { OLLAMA_KEEP_ALIVE: "-1" }   # keep models loaded; first answer after idle otherwise waits for a reload
+    volumes: [ollama:/root/.ollama]
+    ports: ["11434:11434"]
+
+  api:
+    build:
+      context: .                      # repo root: image contains api/, vlm/ and rag/
+      dockerfile: api/Dockerfile
+      args: { WITH_VLM: "${WITH_VLM:-0}" }   # WITH_VLM=1 → CLIP material stage instead of class-prior
+    env_file: .env
+    environment:
+      DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-mrs}:${POSTGRES_PASSWORD:-mrs}@db:5432/${POSTGRES_DB:-mrs}
+      OLLAMA_URL: http://ollama:11434
+      IMAGE_DIR: /srv/api/images
+      CORPUS_DIR: /srv/rag/corpus
+      DEMO_DIR: /srv/demo
+      MODELS_DIR: /srv/models
+      REPORTS_DIR: /srv/reports
+    depends_on:
+      db: { condition: service_healthy }
+    ports: ["8000:8000"]
+    volumes:
+      - ./rag/corpus:/srv/rag/corpus:ro   # edit corpus without rebuilding; re-run `make seed`
+      - imagestore:/srv/api/images
+      - ./models:/srv/models:ro           # built-in demo videos + exported model (for /api/demo, /api/model)
+      - ./training/reports:/srv/reports:ro
+      - demostore:/srv/demo               # control.json + uploaded videos, shared with demo-edge
+    healthcheck:
+      test: ["CMD-SHELL", "python -c \"import urllib.request as u; u.urlopen('http://localhost:8000/healthz')\""]
+      interval: 10s
+      retries: 12
+
+  web:
+    build: ./web
+    depends_on:
+      api: { condition: service_healthy }
+    ports: ["8080:80"]
+
+  # Built-in demo: streams the rendered conveyor-belt video (real test-split objects) through the
+  # real detector — no camera needed:  python scripts/make_belt_video.py && docker compose --profile demo up -d demo-edge
+  demo-edge:
+    profiles: [demo]
+    build: ./edge
+    environment:
+      API_URL: http://api:8000
+      EDGE_MODEL: /models/yolo11n_makerspace.onnx
+      EDGE_CLASSES: /models/classes.yaml
+      DEMO_DEFAULT: /models/demo_belt.mp4
+    command: ["python", "demo_loop.py"]
+    volumes: ["./models:/models:ro", "demostore:/demo"]
+    depends_on:
+      api: { condition: service_healthy }
+
+  # Edge node. On a Pi 5 / Jetson run this service on the device itself:
+  #   docker compose --profile edge up pi-edge
+  pi-edge:
+    profiles: [edge]
+    build: ./edge
+    env_file: .env
+    environment:
+      API_URL: http://api:8000
+    devices: ["/dev/video0:/dev/video0"]
+    volumes: ["./models:/models:ro", "./edge/results:/app/results"]
+    depends_on: [api]
+
+volumes:
+  pgdata:
+  demostore:
+  ollama:
+  imagestore:

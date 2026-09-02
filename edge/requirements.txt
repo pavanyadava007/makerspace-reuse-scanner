@@ -1,0 +1,6 @@
+opencv-python-headless>=4.10
+onnxruntime>=1.18        # on Jetson: replace with onnxruntime-gpu / TensorRT EP
+numpy>=1.26
+websockets>=14        # >=14 for the proxy=None argument (LAN API, never proxied)
+requests>=2.32
+pyyaml>=6

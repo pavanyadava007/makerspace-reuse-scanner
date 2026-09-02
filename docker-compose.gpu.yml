@@ -1,0 +1,12 @@
+# Optional override: give Ollama the NVIDIA GPU (needs nvidia-container-toolkit on the host).
+#   docker compose -f docker-compose.yml -f docker-compose.gpu.yml up -d
+# Without it Ollama runs llama3.1:8b on the CPU — functional, but several seconds per answer.
+services:
+  ollama:
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
