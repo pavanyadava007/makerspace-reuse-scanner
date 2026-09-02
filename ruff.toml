@@ -2,3 +2,6 @@ line-length = 140
 [lint]
 select = ["E", "F", "W", "I", "B"]
 ignore = ["E701", "E702", "B008"]
+[lint.per-file-ignores]
+"deploy/hf_space/app.py" = ["E501"]        # Gradio UI copy and system prompts: long literal strings are clearer unwrapped
+"deploy/hf_space/rag_lite.py" = ["E501"]

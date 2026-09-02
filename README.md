@@ -13,6 +13,11 @@ Pi 5 / Jetson / webcam --OpenCV--> YOLO11n (ONNX Runtime) --WS--> FastAPI --> Po
                                                        React + Vite (live overlay - inventory - item detail - cited suggestions)
 ```
 
+## Live demo / Live-Demo
+- **Hugging Face Space** (try the detector on belt frames or your own photo, session inventory, cited Ask): https://huggingface.co/spaces/pavanyadava07/makerspace-reuse-scanner
+- **Detector on the Hub** (ONNX + checkpoint + eval/bench reports + model card): https://huggingface.co/pavanyadava07/makerspace-yolo11n
+- **Source**: https://github.com/pavanyadava007/makerspace-reuse-scanner · the Space's About tab lists exactly what differs from the full stack (session inventory, e5-small embeddings, Qwen2.5-7B on ZeroGPU instead of llama3.1:8b in Ollama). Publish with `python scripts/publish_hf.py --model --space`.
+
 ## Quick start / Schnellstart
 ```bash
 make deploy        # = scripts/deploy.sh: .env → compose up --build (GPU override if present) → pull Ollama models once → seed → smoke test
@@ -68,7 +73,8 @@ The Live tab shows the frame with boxes as soon as the first `frame` message arr
 | `api/` | Backend + DB | FastAPI REST + WebSocket, SQLAlchemy 2.0, Alembic, pgvector, pytest (CRUD, WS ingest + dedupe, RAG with mocked Ollama) |
 | `web/` | Frontend | React 18 + Vite + TypeScript, no UI framework: live overlay + device/model panel, inventory with stat tiles, bar lists, filters, sorting, add/delete, item detail with clickable detection history, and an Ask page for cited knowledge-base answers |
 | `rag/` | Knowledge | DE/EN corpus, chunk-by-heading ingest, hybrid retrieval (pgvector + Postgres full-text), cited answers, material↔process graph expansion; `rag/eval/` = 25 hand-verified questions + runner → `rag/eval/reports/` |
-| `scripts/` | Ops & demo | `deploy.sh` (one-command deployment), `smoke.sh` (end-to-end check), `simulate_edge.py`, belt/slideshow demo-video renderers |
+| `scripts/` | Ops & demo | `deploy.sh` (one-command deployment), `smoke.sh` (end-to-end check), `publish_hf.py` (model repo + Space), `simulate_edge.py`, belt/slideshow demo-video renderers |
+| `deploy/` | Hugging Face | `hf_space/` Gradio app (same ONNX, same corpus, ZeroGPU Qwen2.5-7B for answers) and the model card |
 | `docs/` | PM & decisions | Arbeitspakete, Meilensteine, 4 Statusberichte (DE), EN mirrors, 4 ADRs, demo script, `screenshots/` |
 
 ## API

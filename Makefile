@@ -11,6 +11,6 @@ export:    ; cd training && python export_onnx.py
 bench:     ; cd edge && python bench.py
 test:      ; cd api && pytest -q
 test-edge: ; cd edge && pytest -q
-lint:      ; ruff check api edge training vlm rag scripts
+lint:      ; ruff check api edge training vlm rag scripts deploy
 seed:      ; docker compose exec api python -m app.seed && docker compose exec api python -m app.rag_ingest
 rag-eval:  ; python rag/eval/run_rag_eval.py --api $${WEB_URL:-http://localhost:8080}
