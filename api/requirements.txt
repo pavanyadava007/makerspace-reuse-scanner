@@ -9,6 +9,7 @@ pydantic-settings>=2.4
 httpx>=0.27
 websockets>=12
 pillow>=10
+numpy>=1.26      # tests build JPEG frames; not guaranteed transitively
 python-multipart
 pytest
 pytest-asyncio
