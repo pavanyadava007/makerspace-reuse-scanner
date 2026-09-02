@@ -3,7 +3,8 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.routers import demo, detections, items, rag, ws
 
-app = FastAPI(title="Makerspace Reuse Scanner API", version="0.3.0")
+app = FastAPI(title="Makerspace Reuse Scanner API", version="0.4.0",
+              contact={"name": "Pavan Yadav Annappa", "email": "pavanyadava07@gmail.com"}, license_info={"name": "MIT"})
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
 for m in (items, detections, rag, ws, demo): app.include_router(m.r)
 
