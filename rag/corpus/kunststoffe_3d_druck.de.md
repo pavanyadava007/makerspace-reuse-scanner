@@ -4,7 +4,7 @@
 PLA ist biobasiert, aber nur industriell kompostierbar (≥ 58 °C). Im Hauskompost und in der Biotonne baut es nicht ab und gehört daher nicht hinein. Fehldrucke gehören in den Restmüll; Alternative: Filament-Recycler (Shredder + Extruder) im Makerspace, wenn sortenrein gesammelt wird.
 
 ## PETG und ABS
-PETG-Drucke sind kein Verpackungsmüll. Sortenreine Sammlung ermöglicht Recycling über Filament-Recycler. ABS setzt beim Drucken und Schmelzen Styrol frei – nur mit Absaugung verarbeiten; Reste in den Restmüll.
+PETG-Drucke sind kein Verpackungsmüll. Sortenreine Sammlung ermöglicht Recycling über Filament-Recycler. ABS setzt beim Drucken und Schmelzen Styrol frei - nur mit Absaugung verarbeiten; Reste in den Restmüll.
 
 ## Filamentspulen
 Leere Kunststoffspulen: bei vielen Herstellern Rücknahme (z. B. Pfandsysteme oder Sammelaktionen); Pappspulen in die Papiertonne. Halbvolle Spulen im Makerspace-Regal mit Datum und Material beschriften und für Tests freigeben.

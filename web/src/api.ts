@@ -41,7 +41,7 @@ export const api = {
   reset: () => j<{ deleted: Record<string, number> }>(fetch("/api/admin/reset", { method: "POST" })),
 };
 export const wsUrl = (p: string) => `${location.protocol === "https:" ? "wss" : "ws"}://${location.host}${p}`;
-// Material identity colors — validated palette (dataviz six-checks, light surface #F8F8F5); every colored
+// Material identity colors - validated palette (dataviz six-checks, light surface #F8F8F5); every colored
 // mark carries a text label as secondary encoding, so the wood↔plastic protan floor-band pair is legal.
 export const materialHue: Record<string, string> = {
   steel: "var(--metal)", aluminium: "var(--metal)", copper: "var(--metal)", "PLA plastic": "var(--plastic)", "PETG plastic": "var(--plastic)",

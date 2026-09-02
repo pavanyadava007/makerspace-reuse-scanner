@@ -8,7 +8,7 @@ Edge nodes push ~3 frames/s with base64 JPEG + crops; browsers need low-latency 
 `/ws/edge` (edge → API, persisted synchronously in a thread) and `/ws/live` (API → browsers, fan-out via in-memory hub). REST under `/api` for items, materials, stats, images, ask/suggest. Pydantic v2 schemas; SQLAlchemy 2.0 typed models.
 
 ## Alternatives
-- MQTT broker: better for many edge nodes; adds a service — deferred until > 3 devices.
+- MQTT broker: better for many edge nodes; adds a service - deferred until > 3 devices.
 - Server-Sent Events: one-directional; edge → API still needs another channel.
 
 ## Consequences

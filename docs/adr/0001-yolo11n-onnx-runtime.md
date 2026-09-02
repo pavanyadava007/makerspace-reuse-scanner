@@ -14,4 +14,4 @@ Fine-tune YOLO11n (2.6 M params) with a frozen backbone; export a static 640×64
 
 ## Consequences
 - Same artifact runs on laptop, Pi and Jetson; FPS must always be labelled by device (`edge/device.py`).
-- Accuracy ceiling limited by dataset size — reported honestly from the test split only.
+- Accuracy ceiling limited by dataset size - reported honestly from the test split only.

@@ -1,4 +1,4 @@
-# RAG evaluation — 2026-09-02
+# RAG evaluation - 2026-09-02
 API `http://localhost:8080` · generation model `llama3.1:8b` · k=4 · 25 questions from `questions.yaml` · retrieval: vector-only (baseline before hybrid retrieval; smoke test ran concurrently, which explains the 55 s outlier)
 
 | metric | result |
@@ -13,7 +13,7 @@ API `http://localhost:8080` · generation model `llama3.1:8b` · k=4 · 25 quest
 | # | kind | lang | question | doc | section | answer |
 |---|---|---|---|---|---|---|
 | 1 | corpus | de | Wohin mit PLA-Fehldrucken? | ✓ | ✓ | ✓ |
-| 2 | corpus | de | Kann ich PETG-Drucke in den Gelben Sack werfen? | ✓ | – | ✓ |
+| 2 | corpus | de | Kann ich PETG-Drucke in den Gelben Sack werfen? | ✓ | - | ✓ |
 | 3 | corpus | de | Wohin mit einem defekten Lithium-Akku? | ✓ | ✓ | ✓ |
 | 4 | corpus | de | Darf ich Sperrholzreste im Kamin verbrennen? | ✓ | ✗ | ✗ |
 | 5 | corpus | de | Welche Altholzkategorie hat MDF? | ✓ | ✓ | ✓ |
@@ -27,16 +27,16 @@ API `http://localhost:8080` · generation model `llama3.1:8b` · k=4 · 25 quest
 | 13 | corpus | de | Was gehört in die Papiertonne? | ✓ | ✓ | ✓ |
 | 14 | corpus | de | Worauf muss ich beim Drucken von ABS achten? | ✓ | ✓ | ✓ |
 | 15 | corpus | de | Kann PLA in die Biotonne? | ✓ | ✓ | ✓ |
-| 16 | corpus | en | How do I reuse plywood offcuts? | ✓ | – | ✓ |
-| 17 | corpus | en | Where do damaged lithium cells go? | ✓ | – | ✗ |
+| 16 | corpus | en | How do I reuse plywood offcuts? | ✓ | - | ✓ |
+| 17 | corpus | en | Where do damaged lithium cells go? | ✓ | - | ✗ |
 | 18 | corpus | en | What is the waste hierarchy? | ✓ | ✓ | ✓ |
 | 19 | corpus | en | When is a part damaged rather than just worn? | ✓ | ✓ | ✓ |
-| 20 | corpus | en | Is PLA home-compostable? | ✓ | – | ✓ |
-| 21 | refuse | de | Wie hoch ist die Mehrwertsteuer auf Schrottverkäufe in Deutschland? | – | – | ✓ |
-| 22 | refuse | de | Wie entsorge ich radioaktive Abfälle aus dem Labor? | – | – | ✓ |
-| 23 | refuse | en | What is the melting point of titanium? | – | – | ✓ |
-| 24 | inventory | de | Wie viele Schrauben haben wir im Bestand? | ✓ | – | ✓ |
-| 25 | inventory | en | How many PCBs are in stock right now? | ✓ | – | ✓ |
+| 20 | corpus | en | Is PLA home-compostable? | ✓ | - | ✓ |
+| 21 | refuse | de | Wie hoch ist die Mehrwertsteuer auf Schrottverkäufe in Deutschland? | - | - | ✓ |
+| 22 | refuse | de | Wie entsorge ich radioaktive Abfälle aus dem Labor? | - | - | ✓ |
+| 23 | refuse | en | What is the melting point of titanium? | - | - | ✓ |
+| 24 | inventory | de | Wie viele Schrauben haben wir im Bestand? | ✓ | - | ✓ |
+| 25 | inventory | en | How many PCBs are in stock right now? | ✓ | - | ✓ |
 
 ## Answers (verbatim, for manual review)
 

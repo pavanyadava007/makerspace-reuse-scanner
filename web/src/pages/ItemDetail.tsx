@@ -30,9 +30,9 @@ export default function ItemDetail() {
             <img src={`/api/images/${sel.image_id}`} alt={it.label} onLoad={(e) => setDim({ w: e.currentTarget.naturalWidth, h: e.currentTarget.naturalHeight })} />
             <Overlay w={dim.w} h={dim.h} link={false}
               dets={[{ cls: sel.cls, conf: sel.conf, xyxy: [sel.x1, sel.y1, sel.x2, sel.y2], material: sel.material_pred, item_id: null }]} />
-          </> : <div className="empty">Added by hand — no camera image.</div>}
+          </> : <div className="empty">Added by hand - no camera image.</div>}
         </div>
-        <h2>Detection history <span className="muted">({it.detections.length > HISTORY_ROWS ? `latest ${HISTORY_ROWS} of ${it.detections.length}` : it.detections.length} — click a row to show its frame)</span></h2>
+        <h2>Detection history <span className="muted">({it.detections.length > HISTORY_ROWS ? `latest ${HISTORY_ROWS} of ${it.detections.length}` : it.detections.length} - click a row to show its frame)</span></h2>
         <div className="card tablewrap">
           <table>
             <thead><tr><th>When</th><th className="num">Conf</th><th>Material (backend)</th><th>Device</th><th className="num">FPS / ms</th></tr></thead>
@@ -42,7 +42,7 @@ export default function ItemDetail() {
                 <td>{d.material_pred ?? "-"} <span className="muted">({d.vlm_backend})</span></td><td>{d.device}</td>
                 <td className="num">{d.fps} / {d.infer_ms}</td>
               </tr>))}
-              {it.detections.length === 0 && <tr><td colSpan={5} className="muted">No detections — this item was added manually.</td></tr>}
+              {it.detections.length === 0 && <tr><td colSpan={5} className="muted">No detections - this item was added manually.</td></tr>}
             </tbody>
           </table>
         </div>

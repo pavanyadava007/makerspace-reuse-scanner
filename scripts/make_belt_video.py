@@ -49,7 +49,7 @@ def scaled(obj: np.ndarray, mask: np.ndarray, rng: random.Random) -> tuple[np.nd
 def main():
     rng = random.Random(0)
     pool = cutouts(rng)
-    if not pool: raise SystemExit("no test images found — run training/build_public_dataset.py first")
+    if not pool: raise SystemExit("no test images found - run training/build_public_dataset.py first")
     rng.shuffle(pool)  # mix the classes along the belt
     cycle = W + 500
     lanes = [150, 400]

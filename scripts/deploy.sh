@@ -31,4 +31,4 @@ done
 dc exec -T api python -m app.seed
 dc exec -T api python -m app.rag_ingest
 WEB_URL="${WEB_URL:-http://localhost:8080}" scripts/smoke.sh
-echo "[deploy] done → ${WEB_URL:-http://localhost:8080}   (API docs: ${WEB_URL:-http://localhost:8080}/api/docs is proxied? no — use the api port, default :8000/docs)"
+echo "[deploy] done → ${WEB_URL:-http://localhost:8080}   (API docs: ${WEB_URL:-http://localhost:8080}/api/docs is proxied? no - use the api port, default :8000/docs)"

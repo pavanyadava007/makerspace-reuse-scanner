@@ -81,7 +81,7 @@ async def test_ask_graph_terms_add_chunks_without_duplicates(seeded_chunks):
 
 async def test_hybrid_retrieval_finds_rare_literal_terms(seeded_chunks):
     """The fake embedding of this question lands nowhere near the Altholz chunk (it is seeded on the first 12 characters),
-    so only the full-text leg can bring in the one chunk that mentions 'Kamin' — the case that failed in rag/eval."""
+    so only the full-text leg can bring in the one chunk that mentions 'Kamin' - the case that failed in rag/eval."""
     with SessionLocal() as db:
         _, sources, _ = await rag_service.ask(db, "Darf ich Sperrholzreste im Kamin verbrennen?", "de", k=2)
         assert ("metalle_und_altholz.de.md", "Altholz-Kategorien (AltholzV)") in [(s["doc"], s["section"]) for s in sources]

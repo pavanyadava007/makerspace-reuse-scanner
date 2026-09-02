@@ -41,7 +41,7 @@ def _find_or_create_item(db, cls, attr, mats, location, image_id, count_in_frame
 
     A re-detection refreshes `updated_at`, so an object that stays in view keeps mapping to ONE item
     (the window is measured from the last sighting, not from creation). Quantity is the largest
-    number of same-class boxes seen in a single frame — repeated frames of one object never inflate it.
+    number of same-class boxes seen in a single frame - repeated frames of one object never inflate it.
     """
     now = datetime.now(timezone.utc)
     since = now - timedelta(seconds=settings.dedupe_window_s)

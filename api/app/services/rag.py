@@ -59,7 +59,7 @@ def lexical_ids(db: Session, question: str, lang: str | None) -> list[int]:
 def retrieve(db: Session, qvec: list[float], k: int, lang: str | None = None, question: str | None = None) -> list[RagChunk]:
     """Hybrid retrieval: top-k by cosine distance plus up to LEXICAL_K chunks from lexical_ids(). Measured 2026-09-02
     (rag/eval, vector-only baseline): "Sperrholzreste im Kamin verbrennen?" missed the Altholz chunk and "Warum darf PVC
-    nicht gelasert werden?" missed the PMMA chunk — rare literal terms (Kamin, PVC) carry little embedding weight."""
+    nicht gelasert werden?" missed the PMMA chunk - rare literal terms (Kamin, PVC) carry little embedding weight."""
     q = select(RagChunk).order_by(RagChunk.embedding.cosine_distance(qvec)).limit(k)
     if lang: q = q.where(RagChunk.lang == lang)
     out = list(db.scalars(q))
@@ -73,7 +73,7 @@ def retrieve(db: Session, qvec: list[float], k: int, lang: str | None = None, qu
 
 
 def inventory_snapshot(db: Session, lang: str, max_lines: int = 25) -> str:
-    """Compact live-stock summary injected into the ask() context — generated from the DB at question time,
+    """Compact live-stock summary injected into the ask() context - generated from the DB at question time,
     so stock answers are grounded, never guessed. Includes the correct bin (material.disposal_de) per label."""
     per = db.execute(select(Item.label, Item.status, func.sum(Item.quantity)).group_by(Item.label, Item.status)).all()
     mat = db.execute(select(Item.label, Material.name, Material.disposal_de, func.count())
@@ -99,11 +99,11 @@ def inventory_snapshot(db: Session, lang: str, max_lines: int = 25) -> str:
 
 SYSTEM = {"de": "Du bist ein Assistent für Wiederverwendung und Entsorgung in einem Makerspace. Antworte IMMER auf Deutsch, "
                 "auch wenn die Frage oder der Kontext auf Englisch ist. Antworte knapp. Nutze NUR den Kontext. "
-                "Zitiere Quellen als [Nr]. Der Kontext kann einen Live-Bestand des Inventars enthalten — Stückzahlen und "
+                "Zitiere Quellen als [Nr]. Der Kontext kann einen Live-Bestand des Inventars enthalten - Stückzahlen und "
                 "Behälter-Angaben daraus darfst du direkt nennen. Wenn der Kontext nichts hergibt, sage das.",
           "en": "You assist with reuse and disposal in a makerspace. ALWAYS answer in English, even when the question or the "
-                "context is German — translate what you use. Answer briefly using ONLY the context. "
-                "Cite sources as [n]. The context may include a live snapshot of the inventory — you may quote its counts "
+                "context is German - translate what you use. Answer briefly using ONLY the context. "
+                "Cite sources as [n]. The context may include a live snapshot of the inventory - you may quote its counts "
                 "and bin routes directly. If the context is insufficient, say so."}
 
 async def ask(db: Session, question: str, lang: str = "de", k: int = 4, graph_terms: list[str] | None = None,

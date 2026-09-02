@@ -1,5 +1,5 @@
 # Build context is the REPO ROOT (see docker-compose.yml) so that vlm/ and rag/ ship inside the image.
-# Layout inside the image: /srv/api (this app), /srv/vlm, /srv/rag — matching the repo layout, so the
+# Layout inside the image: /srv/api (this app), /srv/vlm, /srv/rag - matching the repo layout, so the
 # sys.path lookups in app/services/material.py and app/routers/rag.py (../../../vlm, ../../../rag) resolve.
 FROM python:3.11-slim
 ARG WITH_VLM=0

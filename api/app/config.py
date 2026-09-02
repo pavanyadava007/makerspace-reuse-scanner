@@ -10,6 +10,6 @@ class Settings(BaseSettings):
     corpus_dir: str = "corpus"
     demo_dir: str = "demo"          # control.json + uploads/ (volume shared with the demo-edge container)
     models_dir: str = "models"      # built-in demo videos + onnx (host ./models, read-only)
-    reports_dir: str = "reports"    # training/reports (read-only) — the only accuracy source for /api/model
+    reports_dir: str = "reports"    # training/reports (read-only) - the only accuracy source for /api/model
     dedupe_window_s: int = 20      # same class+location seen within window since last sighting → same item
 settings = Settings()

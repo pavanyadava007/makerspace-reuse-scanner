@@ -1,6 +1,6 @@
-# Statusbericht 1 — 22.06.2026
+# Statusbericht 1 - 22.06.2026
 
-**Berichtszeitraum:** 01.06.–22.06.2026 · **Phase:** AP1, Beginn AP2
+**Berichtszeitraum:** 01.06.-22.06.2026 · **Phase:** AP1, Beginn AP2
 
 ## Erledigt
 - Klassenliste festgelegt (12 Makerspace-Klassen + 3 Materialbrücken aus TrashNet/TACO), siehe `training/classes.yaml`.

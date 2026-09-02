@@ -1,4 +1,4 @@
-# Arbeitspakete (AP) — Makerspace Reuse Scanner
+# Arbeitspakete (AP) - Makerspace Reuse Scanner
 
 | AP | Titel | Inhalt | Ergebnis (Deliverable) | Aufwand |
 |---|---|---|---|---|

@@ -1,6 +1,6 @@
-# Statusbericht 2 — 20.07.2026
+# Statusbericht 2 - 20.07.2026
 
-**Berichtszeitraum:** 23.06.–20.07.2026 · **Phase:** AP2–AP3 abgeschlossen, AP5 begonnen
+**Berichtszeitraum:** 23.06.-20.07.2026 · **Phase:** AP2-AP3 abgeschlossen, AP5 begonnen
 
 ## Erledigt
 - YOLO11n finetuned; Evaluation über `eval_report.py` auf Test-Split (Zahlen: `training/reports/`).

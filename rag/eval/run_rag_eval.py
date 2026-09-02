@@ -1,5 +1,5 @@
 """Run the hand-verified RAG question set against a LIVE API (real Ollama) and write reports/rag_eval_<date>.{md,json}.
-This is the only place RAG quality numbers may come from — never edit them by hand.
+This is the only place RAG quality numbers may come from - never edit them by hand.
 
     python rag/eval/run_rag_eval.py [--api http://localhost:8080] [--k 4] [--tag vector-only]
 
@@ -66,9 +66,9 @@ def summarise(rows: list[dict], latencies: list[float]) -> dict:
 
 
 def to_markdown(date: str, api: str, model: str, k: int, summ: dict, rows: list[dict], answers: dict[int, str]) -> str:
-    def pct(m): return f"{m['hits']}/{m['n']} ({m['rate']*100:.0f} %)" if m["n"] else "–"
-    tick = lambda v: "–" if v is None else ("✓" if v else "✗")  # noqa: E731
-    lines = [f"# RAG evaluation — {date}",
+    def pct(m): return f"{m['hits']}/{m['n']} ({m['rate']*100:.0f} %)" if m["n"] else "-"
+    tick = lambda v: "-" if v is None else ("✓" if v else "✗")  # noqa: E731
+    lines = [f"# RAG evaluation - {date}",
              f"API `{api}` · generation model `{model}` · k={k} · {len(rows)} questions from `questions.yaml`", "",
              "| metric | result |", "|---|---|",
              f"| corpus questions: expected document cited | {pct(summ['doc_hit'])} |",
@@ -82,7 +82,7 @@ def to_markdown(date: str, api: str, model: str, k: int, summ: dict, rows: list[
               f"{tick(r['answer_ok'])} |" for r in rows]
     lines += ["", "Single run at temperature 0.2: wording varies between runs. `doc`/`section` are exact source checks; `answer` for "
               "corpus questions is a key-fact regex, for refuse questions a phrase heuristic (a ✗ there can be a decline in an unlisted "
-              "wording — read the verbatim answer below before counting it as a hallucination).", "",
+              "wording - read the verbatim answer below before counting it as a hallucination).", "",
               "## Answers (verbatim, for manual review)", ""]
     lines += [f"**{r['id']}. {r['q']}**  \n{answers[r['id']].strip()}\n" for r in rows]
     return "\n".join(lines) + "\n"

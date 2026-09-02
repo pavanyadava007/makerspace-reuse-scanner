@@ -1,6 +1,6 @@
-# Status report 3 — 2026-08-24 (English summary; German originals in `docs/de/`)
+# Status report 3 - 2026-08-24 (English summary; German originals in `docs/de/`)
 
-Period 2026-07-21 to 2026-08-24 · WP4–WP7 complete, WP8 in progress.
+Period 2026-07-21 to 2026-08-24 · WP4-WP7 complete, WP8 in progress.
 
 Done: FastAPI REST + two WebSocket endpoints with CI-tested dedupe; React frontend (live overlay, inventory, detail page with edit + reuse suggestion); RAG over five DE/EN corpus docs via pgvector + Ollama with [n] citations and graph expansion; material stage with CLIP default, Qwen2.5-VL on GPU, class-prior fallback, backend recorded per detection.
 

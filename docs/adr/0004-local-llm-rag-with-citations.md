@@ -5,7 +5,7 @@ Date: 2026-08-20 · Status: accepted
 Reuse/disposal advice must follow German rules (ElektroG, BattG, AltholzV, local Wertstoffhof practice) and must not be invented. Data stays on-premise.
 
 ## Decision
-Ollama serves `nomic-embed-text` (embeddings) and `llama3.1:8b` (generation). Corpus is markdown chunked by heading; prompt restricts the model to the retrieved context and requires [n] citations; temperature 0.2. Retrieval is expanded with neighbours from a small material↔process graph (`rag/graph.py`) — a lightweight GraphRAG.
+Ollama serves `nomic-embed-text` (embeddings) and `llama3.1:8b` (generation). Corpus is markdown chunked by heading; prompt restricts the model to the retrieved context and requires [n] citations; temperature 0.2. Retrieval is expanded with neighbours from a small material↔process graph (`rag/graph.py`) - a lightweight GraphRAG.
 
 ## Alternatives
 - Hosted API: violates on-prem requirement, costs per query.

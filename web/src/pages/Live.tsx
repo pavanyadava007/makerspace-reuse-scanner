@@ -28,7 +28,7 @@ export default function Live({ frame, edges }: { frame: Frame | null; edges: Sta
           {frame ? <>
             <img src={`data:image/jpeg;base64,${frame.frame}`} alt="camera frame" />
             <Overlay w={frame.width} h={frame.height} dets={frame.detections} />
-            {stale && <span className="stale">stream idle — last frame {Math.round((Date.now() - lastTs) / 1000)} s ago</span>}
+            {stale && <span className="stale">stream idle - last frame {Math.round((Date.now() - lastTs) / 1000)} s ago</span>}
           </> : <div className="empty">
             No frames yet. Start an edge node where the camera is:<br />
             <code>cd edge && python capture.py</code><br />
@@ -38,8 +38,8 @@ export default function Live({ frame, edges }: { frame: Frame | null; edges: Sta
         </div>
         {frame && <dl className="kv wide">
           <dt>Device</dt><dd>{frame.device}</dd>
-          <dt>Model</dt><dd>{edge?.model ?? "—"}</dd>
-          <dt>Providers</dt><dd>{(edge?.providers ?? []).join(", ") || "—"}</dd>
+          <dt>Model</dt><dd>{edge?.model ?? "-"}</dd>
+          <dt>Providers</dt><dd>{(edge?.providers ?? []).join(", ") || "-"}</dd>
           <dt>Throughput</dt><dd className="num">{frame.fps.toFixed(1)} FPS end-to-end · {frame.infer_ms} ms inference · {frame.width}×{frame.height}</dd>
         </dl>}
       </div>

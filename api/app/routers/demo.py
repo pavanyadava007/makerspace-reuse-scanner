@@ -57,7 +57,7 @@ def demo_select(body: SelectIn):
     edge_path = None
     if body.video is not None:
         match = next((v for v in _videos() if v["name"] == body.video), None)
-        if not match: raise HTTPException(404, "unknown video — see GET /api/demo")
+        if not match: raise HTTPException(404, "unknown video - see GET /api/demo")
         edge_path = match["edge_path"]
     os.makedirs(settings.demo_dir, exist_ok=True)
     with open(_ctrl_path(), "w") as f: json.dump({"video": edge_path}, f)
@@ -78,7 +78,7 @@ async def demo_upload(file: UploadFile):
 
 @r.get("/model")
 def model_card():
-    """Detector facts for the GUI — accuracy comes ONLY from the committed eval report (honesty rule)."""
+    """Detector facts for the GUI - accuracy comes ONLY from the committed eval report (honesty rule)."""
     models = sorted(glob.glob(os.path.join(settings.models_dir, "*.onnx"))) if os.path.isdir(settings.models_dir) else []
     ev = sorted(glob.glob(os.path.join(settings.reports_dir, "eval_*.json"))) if os.path.isdir(settings.reports_dir) else []
     card = {"model": next((os.path.basename(m) for m in models if "makerspace" in m), None), "eval": None}
@@ -88,7 +88,7 @@ def model_card():
 
 
 def _purge_frame_files(d: str):
-    """Best-effort removal of stored JPEG frames — runs AFTER the response; tens of thousands of unlinks
+    """Best-effort removal of stored JPEG frames - runs AFTER the response; tens of thousands of unlinks
     on a volume can take minutes and must never block the request (learned from a real 504)."""
     try:
         for e in os.scandir(d):

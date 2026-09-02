@@ -13,9 +13,9 @@
 
 Hinweis: Messwerte (mAP, FPS) stehen ausschließlich in `training/reports/` und `edge/results/` und werden nie in Prosa vorweggenommen.
 
-**Nachweis-Hinweis (01.09.2026):** Der ursprüngliche Stand enthielt keine Berichte, Benchmarks oder Gewichte; MS1–MS3 waren nicht nachprüfbar.
+**Nachweis-Hinweis (01.09.2026):** Der ursprüngliche Stand enthielt keine Berichte, Benchmarks oder Gewichte; MS1-MS3 waren nicht nachprüfbar.
 Am selben Tag als **v0-public** neu belegt: MS1 nur mit öffentlichen Daten (`training/dataset/SOURCES.md`, 9/15 Klassen, noch keine eigenen Fotos),
 MS2 mit `training/reports/eval_2026-09-02.md` auf dem Test-Split, MS3 mit `edge/results/` auf einem x86-Host gemessen (noch kein Pi-5-Wert).
-MS4–MS6 sind durch die committete Testsuite (`api/tests/`) abgedeckt.
+MS4-MS6 sind durch die committete Testsuite (`api/tests/`) abgedeckt.
 
 **Nachweis (02.09.2026):** MS7 mit `scripts/smoke.sh` gegen den laufenden Stack; MS8 mit `rag/eval/reports/rag_eval_2026-09-02*.md` und `docs/screenshots/`. Statt eines Demo-Videos liefert der Stack selbst die Demo (`docker compose --profile demo`).

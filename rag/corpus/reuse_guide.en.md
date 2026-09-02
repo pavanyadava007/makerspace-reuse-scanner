@@ -13,4 +13,4 @@ Waste hierarchy under German and EU law: prevent → reuse → recycle → recov
 - Cardboard: paper bin; acrylic: residual waste or recycling centre, not the glass container.
 
 ## Condition assessment
-Good: no visible damage, threads clean, no delamination. Worn: cosmetic wear, still functional. Damaged: cracks, corrosion on load paths, bulging cells – route to disposal, never to reuse.
+Good: no visible damage, threads clean, no delamination. Worn: cosmetic wear, still functional. Damaged: cracks, corrosion on load paths, bulging cells - route to disposal, never to reuse.

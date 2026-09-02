@@ -3,11 +3,11 @@
 #   WEB_URL=http://host:8080 scripts/smoke.sh        (ASK=0 skips the Ollama round-trip)
 set -uo pipefail
 WEB="${WEB_URL:-http://localhost:8080}"; fail=0
-chk() { if [ "$2" = OK ]; then echo "  ✓ $1"; else echo "  ✗ $1 — $2"; fail=1; fi; }
+chk() { if [ "$2" = OK ]; then echo "  ✓ $1"; else echo "  ✗ $1 - $2"; fail=1; fi; }
 echo "[smoke] $WEB"
 code=$(curl -s -o /dev/null -w '%{http_code}' -m 10 "$WEB/");                          chk "web serves index (HTTP $code)" "$([ "$code" = 200 ] && echo OK || echo "got $code")"
 body=$(curl -s -m 10 "$WEB/api/stats");                                                 chk "GET /api/stats" "$(echo "$body" | grep -q '"items"' && echo OK || echo "$body")"
-n=$(curl -s -m 10 "$WEB/api/materials" | grep -o '"name"' | wc -l);                     chk "GET /api/materials seeded ($n rows)" "$([ "$n" -ge 15 ] && echo OK || echo "only $n — run make seed")"
+n=$(curl -s -m 10 "$WEB/api/materials" | grep -o '"name"' | wc -l);                     chk "GET /api/materials seeded ($n rows)" "$([ "$n" -ge 15 ] && echo OK || echo "only $n - run make seed")"
 body=$(curl -s -m 10 "$WEB/api/model");                                                 chk "GET /api/model has eval report" "$(echo "$body" | grep -q '"map50"' && echo OK || echo "no eval json mounted: $body")"
 body=$(curl -s -m 10 "$WEB/api/demo");                                                  chk "GET /api/demo lists videos" "$(echo "$body" | grep -q '"videos"' && echo OK || echo "$body")"
 code=$(curl -s -o /dev/null -w '%{http_code}' -m 10 -H 'Connection: Upgrade' -H 'Upgrade: websocket' -H 'Sec-WebSocket-Version: 13' \

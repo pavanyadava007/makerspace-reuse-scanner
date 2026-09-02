@@ -13,9 +13,9 @@
 
 Measured numbers (mAP, FPS) live only in `training/reports/` and `edge/results/`; prose never pre-empts them.
 
-**Evidence note (2026-09-01):** the original snapshot contained no reports, bench results or weights, so MS1–MS3 were not verifiable.
+**Evidence note (2026-09-01):** the original snapshot contained no reports, bench results or weights, so MS1-MS3 were not verifiable.
 Re-baselined the same day as **v0-public**: MS1 is met with public data only (`training/dataset/SOURCES.md`, 9/15 classes, no own photos yet),
 MS2 with `training/reports/eval_2026-09-02.md` from the held-out test split, MS3 with `edge/results/` measured on an x86 host (no Pi 5 result yet).
-MS4–MS6 are covered by the committed test suite (`api/tests/`).
+MS4-MS6 are covered by the committed test suite (`api/tests/`).
 
 **Evidence (2026-09-02):** MS7 via `scripts/smoke.sh` against the running stack; MS8 via `rag/eval/reports/rag_eval_2026-09-02*.md` and `docs/screenshots/`. The stack itself is the demo (`docker compose --profile demo`) instead of a video.

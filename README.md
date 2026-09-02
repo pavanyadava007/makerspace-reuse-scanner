@@ -1,16 +1,16 @@
 # Makerspace Reuse Scanner
 
-**EN** · A camera at the makerspace bench detects parts and offcuts (screws, PCBs, filament spools, wood, cables …), classifies material and condition with a local vision-language model, keeps a reuse inventory, and answers "how do I reuse or dispose of this?" from a cited, German-language knowledge base — all on-premise.
+**EN** · A camera at the makerspace bench detects parts and offcuts (screws, PCBs, filament spools, wood, cables …), classifies material and condition with a local vision-language model, keeps a reuse inventory, and answers "how do I reuse or dispose of this?" from a cited, German-language knowledge base - all on-premise.
 
-**DE** · Eine Kamera an der Werkbank erkennt Teile und Reststücke, bestimmt Material und Zustand mit einem lokalen Vision-Language-Modell, führt ein Wiederverwendungs-Inventar und beantwortet „Wie kann ich das wiederverwenden oder entsorgen?" aus einer zitierenden, deutschsprachigen Wissensbasis — vollständig on-premise.
+**DE** · Eine Kamera an der Werkbank erkennt Teile und Reststücke, bestimmt Material und Zustand mit einem lokalen Vision-Language-Modell, führt ein Wiederverwendungs-Inventar und beantwortet „Wie kann ich das wiederverwenden oder entsorgen?" aus einer zitierenden, deutschsprachigen Wissensbasis - vollständig on-premise.
 
 ```
-Pi 5 / Jetson / webcam ─OpenCV─▶ YOLO11n (ONNX Runtime) ─WS─▶ FastAPI ─▶ PostgreSQL + pgvector
-                                        │                       │              ▲
-                                   crops│                       ▼              │ embeddings
-                                        └──▶ CLIP / Qwen2.5-VL (material)   Ollama (llama3.1, nomic-embed) ◀─ rag/corpus/*.md
-                                                                │
-                                                        React + Vite (live overlay · inventory · item detail · cited suggestions)
+Pi 5 / Jetson / webcam --OpenCV--> YOLO11n (ONNX Runtime) --WS--> FastAPI --> PostgreSQL + pgvector
+                                        |                          |              ^
+                                   crops|                          v              | embeddings
+                                        +--> CLIP / Qwen2.5-VL (material)      Ollama (llama3.1, nomic-embed) <-- rag/corpus/*.md
+                                                                   |
+                                                       React + Vite (live overlay - inventory - item detail - cited suggestions)
 ```
 
 ## Quick start / Schnellstart
@@ -34,7 +34,7 @@ python scripts/simulate_edge.py                  # demo without camera/model →
 ```
 **Detector v0-public.** No makerspace photos exist yet, so the committed model is trained on public data assembled by
 `training/build_public_dataset.py` (LVIS, TACO, TrashNet, a cropped-PCB set, MVTec AD screws + train-only copy-paste composites):
-9 of the 15 classes — screw, nut_bolt, pcb, motor, battery, tool, plastic_container, cardboard, glass. The other 6 (filament_spool,
+9 of the 15 classes - screw, nut_bolt, pcb, motor, battery, tool, plastic_container, cardboard, glass. The other 6 (filament_spool,
 wood_offcut, cable, 3d_print_part, acrylic_sheet, metal_profile) have **no public detection data** and stay empty until own photos are
 added. Counts and licences: `training/dataset/SOURCES.md`; measured mAP: `training/reports/`. Pipeline: `make dataset train eval export`.
 Every `EDGE_*` variable in `.env.example` overrides the same key in `edge/config.yaml` (`edge/settings.py`).
@@ -55,7 +55,7 @@ cd edge
 API_URL=http://localhost:8000 EDGE_MODEL=../models/yolo11n_coco.onnx EDGE_CLASSES=../models/classes_coco.yaml \
 EDGE_CAMERA=0 python capture.py                       # 0 = first webcam; also /dev/video1, rtsp://…, or a video file
 #   video file instead of a camera (looped):  EDGE_CAMERA=/path/to/clip.mp4 …
-#   API on another host (e.g. this EC2 box):  API_URL=http://<host>:8000  — through VS Code, forward port 8000 and keep localhost
+#   API on another host (e.g. this EC2 box):  API_URL=http://<host>:8000  - through VS Code, forward port 8000 and keep localhost
 ```
 The Live tab shows the frame with boxes as soon as the first `frame` message arrives; items land in the Inventory tab within a second.
 
@@ -94,9 +94,9 @@ The **System** page (`docs/screenshots/system.png`) shows the detector card buil
 `python scripts/simulate_edge.py` (demo without camera/model) · `make test` · `make lint` · `make bench` · CI: ruff, pytest against a pgvector service, Vite build.
 
 ## Status
-v0.4 — see `docs/de/Meilensteine.md` and `docs/de/Statusbericht_2026-09-02.md`. Whole stack deploys with one command and is checked by
+v0.4 - see `docs/de/Meilensteine.md` and `docs/de/Statusbericht_2026-09-02.md`. Whole stack deploys with one command and is checked by
 `scripts/smoke.sh`; detector, edge bench and RAG each have a committed measurement. Known gaps: no multi-object tracker (dedupe is
-time-window based — an item is one label at one location seen within 20 s of its last sighting; quantity = most same-class boxes in a single
+time-window based - an item is one label at one location seen within 20 s of its last sighting; quantity = most same-class boxes in a single
 frame), single-process WebSocket hub, 6 of 15 detector classes have no data yet and `battery`/`tool` are unusable, no Pi 5 measurement,
 weights/ONNX/demo videos are reproducible from `make dataset train eval export` but gitignored.
 
@@ -120,8 +120,8 @@ dedupe never refreshed `updated_at` (an object in view > 20 s became a second it
 500'd on unknown ids; `EDGE_MODEL`/`EDGE_MIN_CONF` were documented but never read; `vlm/` and `rag/` were outside the API Docker build
 context (GraphRAG and CLIP silently disabled in Compose); `train.py`'s relative `project="runs"` is nested under `runs/detect/` by
 Ultralytics ≥ 8.4, so `eval_report.py`/`export_onnx.py` could not find `best.pt`; chunks were embedded without nomic's
-`search_document:`/`search_query:` prefixes and without their heading — "Wohin mit Sperrholzresten?" missed the Altholz chunk that names
-Sperrholz; with prefixes it ranks first. Warm answers on an L4: ≈ 1–2 s; `OLLAMA_KEEP_ALIVE=-1` keeps the model resident.
+`search_document:`/`search_query:` prefixes and without their heading - "Wohin mit Sperrholzresten?" missed the Altholz chunk that names
+Sperrholz; with prefixes it ranks first. Warm answers on an L4: ≈ 1-2 s; `OLLAMA_KEEP_ALIVE=-1` keeps the model resident.
 
 
 Lizenz: MIT · Author: Pavan Yadav Annappa, Frankfurt am Main

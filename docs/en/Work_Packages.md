@@ -1,4 +1,4 @@
-# Work packages — Makerspace Reuse Scanner
+# Work packages - Makerspace Reuse Scanner
 
 | WP | Title | Scope | Deliverable | Effort |
 |---|---|---|---|---|
@@ -8,7 +8,7 @@
 | WP4 | Material stage | Zero-shot CLIP, optional Qwen2.5-VL, class-prior fallback with backend tag | `vlm/`, `api/app/services/material.py` | 2 PD |
 | WP5 | Data model & API | PostgreSQL + pgvector, Alembic, FastAPI REST + WebSocket, dedupe, tests | `api/` | 4 PD |
 | WP6 | Frontend | React/Vite: live overlay, inventory table, item detail with editing | `web/` | 4 PD |
-| WP7 | Knowledge base | German disposal-rule corpus, chunking, Ollama embeddings, cited RAG, material–process graph | `rag/`, `/api/ask`, `/api/items/{id}/suggest` | 3 PD |
+| WP7 | Knowledge base | German disposal-rule corpus, chunking, Ollama embeddings, cited RAG, material-process graph | `rag/`, `/api/ask`, `/api/items/{id}/suggest` | 3 PD |
 | WP8 | Ops & docs | Docker Compose, GitHub Actions, bilingual README, ADRs, status reports, demo video | repo root, `docs/` | 3 PD |
 
 Dependencies: WP2 ← WP1; WP3 ← WP2; WP5 ← WP4; WP6 ← WP5; WP7 ← WP5; WP8 ← all.

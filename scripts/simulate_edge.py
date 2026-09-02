@@ -24,7 +24,7 @@ def frame():
     return img, dets
 
 async def main():
-    async with websockets.connect(API, proxy=None) as ws:  # LAN service — ignore proxy env
+    async with websockets.connect(API, proxy=None) as ws:  # LAN service - ignore proxy env
         await ws.send(json.dumps({"type": "hello", "device": "simulator (no camera)", "providers": ["none"], "model": "simulator"}))
         while True:
             img, dets = frame()

@@ -53,4 +53,4 @@ def test_summarise_and_markdown():
     assert s["doc_hit"] == {"n": 1, "hits": 1, "rate": 1.0} and s["section_hit"]["n"] == 0 and s["refusal_ok"]["rate"] == 1.0
     assert s["latency_s_median"] == 2.0
     md = to_markdown("2026-09-02", "http://x", "m", 4, s, rows, {1: "x", 2: "insufficient context"})
-    assert md.startswith("# RAG evaluation — 2026-09-02") and "| 1 | corpus | de | a | ✓ | – | ✓ |" in md
+    assert md.startswith("# RAG evaluation - 2026-09-02") and "| 1 | corpus | de | a | ✓ | - | ✓ |" in md

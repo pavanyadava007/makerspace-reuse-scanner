@@ -53,7 +53,7 @@ services:
     ports: ["8080:80"]
 
   # Built-in demo: streams the rendered conveyor-belt video (real test-split objects) through the
-  # real detector — no camera needed:  python scripts/make_belt_video.py && docker compose --profile demo up -d demo-edge
+  # real detector - no camera needed:  python scripts/make_belt_video.py && docker compose --profile demo up -d demo-edge
   demo-edge:
     profiles: [demo]
     build: ./edge

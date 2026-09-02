@@ -1,4 +1,4 @@
-"""Evaluate best.pt on the held-out TEST split and write reports/eval_<date>.md — the only place mAP numbers may come from."""
+"""Evaluate best.pt on the held-out TEST split and write reports/eval_<date>.md - the only place mAP numbers may come from."""
 import datetime
 import json
 import os
@@ -11,7 +11,7 @@ r = m.val(data="data.yaml", split="test", imgsz=640, plots=True, project=RUNS, n
 names = m.names
 rows = "\n".join(f"| {names[i]} | {r.box.ap50[k]:.3f} | {r.box.ap[k]:.3f} |" for k, i in enumerate(r.box.ap_class_index))
 d = datetime.date.today().isoformat()
-md = f"""# Evaluation — {d}
+md = f"""# Evaluation - {d}
 Model: yolo11n fine-tuned · split: test · imgsz 640 · conf 0.001 · IoU 0.7 (ultralytics default)
 
 | overall | mAP50 | mAP50-95 | precision | recall |

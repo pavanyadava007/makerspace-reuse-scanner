@@ -21,7 +21,7 @@ export default function Ask() {
     setBusy(true); setErr("");
     api.ask(text, lang)
       .then((r) => { setHistory((h) => [{ ...r, q: text, t: Date.now() }, ...h]); setQ(""); })
-      .catch((e) => setErr(`${e} — is Ollama running with its models pulled?`))
+      .catch((e) => setErr(`${e} - is Ollama running with its models pulled?`))
       .finally(() => setBusy(false));
   };
   return (
@@ -33,15 +33,15 @@ export default function Ask() {
         <details className="scope">
           <summary>What can I ask?</summary>
           <ul className="muted">
-            <li><b>Waste sorting (DE rules):</b> Restmüll, Gelber Sack, Papiertonne, Glascontainer, Wertstoffhof — what goes where.</li>
+            <li><b>Waste sorting (DE rules):</b> Restmüll, Gelber Sack, Papiertonne, Glascontainer, Wertstoffhof - what goes where.</li>
             <li><b>Electronics &amp; batteries:</b> e-waste rules (ElektroG), lithium cells (BattG, taping poles, damaged cells), desoldering parts, reusing motors and cables.</li>
             <li><b>Plastics &amp; 3D printing:</b> PLA / PETG / ABS disposal &amp; recycling, failed prints, filament spools, acrylic (and why PVC is never lasered).</li>
-            <li><b>Metal &amp; wood:</b> scrap metal, sorting screws, aluminium profiles, waste-wood categories A I–IV, reusing plywood/MDF offcuts.</li>
+            <li><b>Metal &amp; wood:</b> scrap metal, sorting screws, aluminium profiles, waste-wood categories A I-IV, reusing plywood/MDF offcuts.</li>
             <li><b>Reuse &amp; condition:</b> reuse-first hierarchy, judging if a part is still usable.</li>
             <li><b>Live stock:</b> a snapshot of the current inventory (counts per object class, statuses, and the correct
-              bin per material) is included with every question — ask “how many screws do we have?” or “which bin for the PCBs?”.</li>
+              bin per material) is included with every question - ask “how many screws do we have?” or “which bin for the PCBs?”.</li>
           </ul>
-          <p className="muted">Everything else is answered ONLY from these sources — questions outside them are declined
+          <p className="muted">Everything else is answered ONLY from these sources - questions outside them are declined
             instead of guessed. Full tables and charts live on the <b>Inventory</b> tab.</p>
         </details>
         <form onSubmit={(e) => { e.preventDefault(); submit(q); }}>

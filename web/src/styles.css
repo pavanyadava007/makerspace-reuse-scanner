@@ -1,4 +1,4 @@
-/* Makerspace Reuse Scanner — flat, print-like light UI. Manrope, hard rules, no shadows-as-depth.
+/* Makerspace Reuse Scanner - flat, print-like light UI. Manrope, hard rules, no shadows-as-depth.
    Material identity palette validated with the dataviz six-checks against --panel (#F8F8F5);
    every colored mark carries a text label (chips, overlay tags, feed rows) as secondary encoding. */
 :root {

@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { api, type DemoStatus } from "../api";
 
 // Controls the demo-edge container: pick a built-in or uploaded video, upload a new one, or stop.
-// A real camera still connects from wherever the camera is (edge/capture.py) — a server can't reach it.
+// A real camera still connects from wherever the camera is (edge/capture.py) - a server can't reach it.
 export default function DemoSource() {
   const [st, setSt] = useState<DemoStatus | null>(null);
   const [busy, setBusy] = useState(""); const [err, setErr] = useState("");
@@ -24,7 +24,7 @@ export default function DemoSource() {
       <h2>Demo source</h2>
       {st && <div className="toolbar" style={{ marginBottom: 6 }}>
         <select value={selName} onChange={(e) => select(e.target.value || null)} aria-label="demo video">
-          <option value="">— stopped —</option>
+          <option value="">- stopped -</option>
           {st.videos.map((v) => <option key={v.edge_path} value={v.name}>{v.name} ({v.kind}, {v.size_mb} MB)</option>)}
         </select>
         <button className="btn ghost" onClick={() => file.current?.click()} disabled={!!busy}>Upload video…</button>

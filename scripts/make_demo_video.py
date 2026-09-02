@@ -1,5 +1,5 @@
 """Turn held-out TEST-split images into a slow-pan slideshow video for `edge/capture.py` (EDGE_CAMERA=demo.mp4).
-Uses only test images (never seen in training) and shows NO labels — the detector must find the objects itself.
+Uses only test images (never seen in training) and shows NO labels - the detector must find the objects itself.
 Usage: python scripts/make_demo_video.py [out.mp4] [n_images] [seconds_per_image]"""
 import random
 import sys
@@ -15,7 +15,7 @@ secs = float(sys.argv[3]) if len(sys.argv) > 3 else 2.5
 fps, W, H = 10, 1280, 720
 
 imgs = sorted((ROOT / "training/dataset/images/test").glob("*.jpg"))
-if not imgs: raise SystemExit("no test images — run training/build_public_dataset.py first")
+if not imgs: raise SystemExit("no test images - run training/build_public_dataset.py first")
 random.Random(0).shuffle(imgs)
 # one image per source prefix first (lvis_, taco_, trashnet_, pcb_, screw_) so every class family appears, then the rest
 by_src = {}

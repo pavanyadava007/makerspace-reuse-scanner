@@ -27,7 +27,7 @@ def open_camera(src):
     cap = cv2.VideoCapture(int(src) if str(src).isdigit() else src)
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280); cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
     if not cap.isOpened():
-        raise SystemExit(f"cannot open camera/video {src!r} — webcam index, /dev/videoN, RTSP URL or a video file")
+        raise SystemExit(f"cannot open camera/video {src!r} - webcam index, /dev/videoN, RTSP URL or a video file")
     return cap
 
 
