@@ -39,6 +39,7 @@ export const api = {
   demoUpload: (f: File) => { const fd = new FormData(); fd.append("file", f); return j<DemoVideo>(fetch("/api/demo/upload", { method: "POST", body: fd })); },
   modelCard: () => j<ModelCard>(fetch("/api/model")),
   reset: () => j<{ deleted: Record<string, number> }>(fetch("/api/admin/reset", { method: "POST" })),
+  imageUrl: (id: number) => `/api/images/${id}`,   // the browser demo build swaps this for in-memory blob URLs
 };
 export const wsUrl = (p: string) => `${location.protocol === "https:" ? "wss" : "ws"}://${location.host}${p}`;
 // Material identity colors - validated palette (dataviz six-checks, light surface #F8F8F5); every colored

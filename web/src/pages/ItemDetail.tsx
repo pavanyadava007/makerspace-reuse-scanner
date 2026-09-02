@@ -27,7 +27,7 @@ export default function ItemDetail() {
       <div>
         <div className="stage">
           {sel ? <>
-            <img src={`/api/images/${sel.image_id}`} alt={it.label} onLoad={(e) => setDim({ w: e.currentTarget.naturalWidth, h: e.currentTarget.naturalHeight })} />
+            <img src={api.imageUrl(sel.image_id)} alt={it.label} onLoad={(e) => setDim({ w: e.currentTarget.naturalWidth, h: e.currentTarget.naturalHeight })} />
             <Overlay w={dim.w} h={dim.h} link={false}
               dets={[{ cls: sel.cls, conf: sel.conf, xyxy: [sel.x1, sel.y1, sel.x2, sel.y2], material: sel.material_pred, item_id: null }]} />
           </> : <div className="empty">Added by hand - no camera image.</div>}

@@ -14,7 +14,7 @@ Pi 5 / Jetson / webcam --OpenCV--> YOLO11n (ONNX Runtime) --WS--> FastAPI --> Po
 ```
 
 ## Live demo / Live-Demo
-- **Hugging Face Space, runs in your browser**: https://huggingface.co/spaces/pavanyadava07/makerspace-reuse-scanner · the same ONNX detector via onnxruntime-web on belt frames, your own photo or the webcam; session inventory with bins; the corpus searched with the API's lexical scoring (passages shown verbatim with citations, no text generation in the browser). Its About tab lists exactly what differs from the full stack.
+- **Hugging Face Space, the real GUI running in your browser**: https://huggingface.co/spaces/pavanyadava07/makerspace-reuse-scanner · this React app built in browser mode (`npm run build:browser`): an in-page shim (`web/src/browser/`) replaces the API and the live socket, the same ONNX detector runs in a Web Worker with onnxruntime-web on the conveyor clip, an uploaded video or the webcam, the inventory uses the server's dedupe rule, and Ask searches the corpus with the API's lexical scoring (passages verbatim with citations; no language model in the browser). Everything else is the unchanged GUI.
 - **Detector on the Hub** (ONNX + checkpoint + eval/bench reports + model card): https://huggingface.co/pavanyadava07/makerspace-yolo11n
 - **Source**: https://github.com/pavanyadava007/makerspace-reuse-scanner · publish with `python scripts/publish_hf.py --model --static`. A Gradio version with Qwen2.5-7B-Instruct on ZeroGPU writing the cited answers is ready in `deploy/hf_space/` (`--space`; Gradio Spaces need a Hugging Face PRO plan).
 
@@ -71,10 +71,10 @@ The Live tab shows the frame with boxes as soon as the first `frame` message arr
 | `training/` | Detector | YOLO11n fine-tune, Label Studio config + converter, `eval_report.py` (only source of mAP numbers) |
 | `vlm/` | Material attribute | Zero-shot CLIP (default), Qwen2.5-VL-3B when a GPU ≥ 6 GB is present |
 | `api/` | Backend + DB | FastAPI REST + WebSocket, SQLAlchemy 2.0, Alembic, pgvector, pytest (CRUD, WS ingest + dedupe, RAG with mocked Ollama) |
-| `web/` | Frontend | React 18 + Vite + TypeScript, no UI framework: live overlay + device/model panel, inventory with stat tiles, bar lists, filters, sorting, add/delete, item detail with clickable detection history, and an Ask page for cited knowledge-base answers |
+| `web/` | Frontend | React 18 + Vite + TypeScript, no UI framework: live overlay + device/model panel, inventory with stat tiles, bar lists, filters, sorting, add/delete, item detail with clickable detection history, an Ask page for cited knowledge-base answers, System page; `src/browser/` = backend-free build for static hosting (in-browser edge node + API shim) |
 | `rag/` | Knowledge | DE/EN corpus, chunk-by-heading ingest, hybrid retrieval (pgvector + Postgres full-text), cited answers, material↔process graph expansion; `rag/eval/` = 25 hand-verified questions + runner → `rag/eval/reports/` |
 | `scripts/` | Ops & demo | `deploy.sh` (one-command deployment), `smoke.sh` (end-to-end check), `publish_hf.py` (model repo + Space), `simulate_edge.py`, belt/slideshow demo-video renderers |
-| `deploy/` | Hugging Face | `hf_static/` in-browser demo (onnxruntime-web, free static Space), `hf_space/` Gradio app (ZeroGPU Qwen2.5-7B answers, PRO plan), model card |
+| `deploy/` | Hugging Face | `hf_static/` card of the free static Space (the browser-mode GUI build), `hf_space/` Gradio app (ZeroGPU Qwen2.5-7B answers, PRO plan), model card |
 | `docs/` | PM & decisions | Arbeitspakete, Meilensteine, 4 Statusberichte (DE), EN mirrors, 4 ADRs, demo script, `screenshots/` |
 
 ## API

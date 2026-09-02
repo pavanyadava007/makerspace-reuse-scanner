@@ -1,8 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, HashRouter } from "react-router-dom";
 import App from "./App";
 import "./styles.css";
-ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode><BrowserRouter><App /></BrowserRouter></React.StrictMode>
-);
+
+// "browser" mode (vite build --mode browser): no backend; an in-page shim serves the API, runs the detector in a Web Worker
+// and feeds the live socket. Hash routing keeps deep links working on static hosts. The GUI itself is unchanged.
+const BROWSER = import.meta.env.MODE === "browser";
+(BROWSER ? import("./browser/shim") : Promise.resolve()).then(() => {
+  const Router = BROWSER ? HashRouter : BrowserRouter;
+  ReactDOM.createRoot(document.getElementById("root")!).render(
+    <React.StrictMode><Router><App /></Router></React.StrictMode>
+  );
+});

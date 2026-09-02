@@ -44,13 +44,14 @@ def transcode_h264(src: Path, dst: Path):
 
 
 def stage_assets(d: Path):
-    (d / "corpus").mkdir(); [shutil.copy(f, d / "corpus" / f.name) for f in (ROOT / "rag/corpus").glob("*.md")]
-    (d / "screenshots").mkdir(); [shutil.copy(f, d / "screenshots" / f.name) for f in (ROOT / "docs/screenshots").glob("*.png")]
+    (d / "corpus").mkdir(exist_ok=True); [shutil.copy(f, d / "corpus" / f.name) for f in (ROOT / "rag/corpus").glob("*.md")]
+    (d / "screenshots").mkdir(exist_ok=True)
+    for f in (ROOT / "docs/screenshots").glob("*.png"): shutil.copy(f, d / "screenshots" / f.name)
     belt = ROOT / "models/demo_belt.mp4"
     if belt.exists():
         transcode_h264(belt, d / "demo_belt.mp4")   # OpenCV writes MPEG-4 Part 2, which browsers cannot play
         import cv2
-        (d / "examples").mkdir(); cap = cv2.VideoCapture(str(belt))
+        (d / "examples").mkdir(exist_ok=True); cap = cv2.VideoCapture(str(belt))
         for k, i in enumerate([40, 130, 220, 310, 400, 490]):
             cap.set(cv2.CAP_PROP_POS_FRAMES, i); ok, f = cap.read()
             if ok: cv2.imwrite(str(d / "examples" / f"belt_{k+1}.jpg"), f, [cv2.IMWRITE_JPEG_QUALITY, 88])
@@ -66,9 +67,16 @@ def stage_space(d: Path):
 
 
 def stage_static(d: Path):
-    for f in (ROOT / "deploy/hf_static").iterdir(): shutil.copy(f, d / f.name)
-    shutil.copy(ROOT / "models/yolo11n_makerspace.onnx", d / "yolo11n_makerspace.onnx")   # fallback copy; primary load is the model repo
+    """The real React GUI built in browser mode (web/dist-browser) + model + videos + corpus + eval json."""
+    import subprocess
+    subprocess.run(["npm", "run", "build:browser"], cwd=ROOT / "web", check=True)
+    shutil.copytree(ROOT / "web/dist-browser", d, dirs_exist_ok=True)
+    for f in (ROOT / "deploy/hf_static").iterdir(): shutil.copy(f, d / f.name)      # Space card (README.md)
+    shutil.copy(ROOT / "models/yolo11n_makerspace.onnx", d / "yolo11n_makerspace.onnx")
+    shutil.copy(ROOT / "training/reports/eval_2026-09-02.json", d / "eval_2026-09-02.json")
     stage_assets(d)
+    slideshow = ROOT / "models/demo_slideshow.mp4"
+    if slideshow.exists(): transcode_h264(slideshow, d / "demo_slideshow.mp4")
 
 
 def main():

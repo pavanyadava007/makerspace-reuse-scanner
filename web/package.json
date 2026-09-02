@@ -1,6 +1,26 @@
 {
-  "name": "mrs-web", "private": true, "version": "0.4.0", "author": "Pavan Yadav Annappa", "license": "MIT", "type": "module",
-  "scripts": { "dev": "vite", "build": "tsc --noEmit && vite build", "preview": "vite preview" },
-  "dependencies": { "react": "^18.3.1", "react-dom": "^18.3.1", "react-router-dom": "^6.26.2" },
-  "devDependencies": { "@types/react": "^18.3.5", "@types/react-dom": "^18.3.0", "@vitejs/plugin-react": "^4.3.1", "typescript": "^5.5.4", "vite": "^5.4.8" }
+  "name": "mrs-web",
+  "private": true,
+  "version": "0.4.0",
+  "author": "Pavan Yadav Annappa",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build", "build:browser": "tsc --noEmit && vite build --mode browser --outDir dist-browser",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "onnxruntime-web": "^1.20.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.2"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.5",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "typescript": "^5.5.4",
+    "vite": "^5.4.8"
+  }
 }

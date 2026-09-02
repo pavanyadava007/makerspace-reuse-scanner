@@ -16,3 +16,4 @@ training/dataset/_cache/
 training/dataset/stats.json
 training/*.pt
 training/weights/
+web/dist-browser/

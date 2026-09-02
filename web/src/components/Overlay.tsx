@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import type { LiveDet } from "../api";
 import { materialHue } from "../api";
 export default function Overlay({ w, h, dets, link = true }: { w: number; h: number; dets: LiveDet[]; link?: boolean }) {
@@ -11,7 +12,7 @@ export default function Overlay({ w, h, dets, link = true }: { w: number; h: num
           <rect className="tagbg" x={x1} y={Math.max(0, y1 - 18)} width={label.length * 6.6 + 10} height={18} style={{ fill: c }} />
           <text className="tag" x={x1 + 5} y={Math.max(13, y1 - 5)}>{label}</text>
         </g>);
-        return link && d.item_id ? <a key={i} href={`/items/${d.item_id}`}>{g}</a> : g;
+        return link && d.item_id ? <Link key={i} to={`/items/${d.item_id}`}>{g}</Link> : g;
       })}
     </svg>
   );
